@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
         });
     }
     else {
+      this.currentPage = 1;
       this.dataService.getPaginatedData(this.currentPage, this.pageSize, searchText)
         .subscribe(response => {
           this.$stories.next(response.items);
