@@ -12,7 +12,9 @@
   </div>
 
   <div class="row align-items-start">
-
+    <form>
+        <input  placeholder="Search" (keyup)="search($event)">
+    </form>
     <table *ngIf="stories" class="table table-striped">
       <thead>
         <tr>
@@ -22,12 +24,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr scope="row" *ngFor="let story of stories">
-          <td>{{ story.storiesId }}</td>
+        <tr scope="row" *ngFor="let story of stories ">
+          <td>{{ story.id }}</td>
           <td>{{ story.title }}</td>
-          <td>{{ story.url }}</td>
+          <td> <a href="{{ story.url }}">{{ story.url }}</a> </td>
         </tr>
+
       </tbody>
+
     </table>
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ (totalItems / pageSize) | number:'1.0-0' }}</span>
+      <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage * pageSize >= totalItems">Next</button>
+    </div>
   </div>
 </div>

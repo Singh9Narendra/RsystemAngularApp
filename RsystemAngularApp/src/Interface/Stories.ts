@@ -1,6 +1,6 @@
 export interface Stories {
-  storiesId: number;
+  id: number;
   title: string;
   url: string;
- 
+  type: string;
 }
